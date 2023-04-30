@@ -16,7 +16,8 @@ public class GroceryManagementSystem {
             System.out.println("1. Add Product");
             System.out.println("2. Search Product");
             System.out.println("3. Display All Products");
-            System.out.println("4. Exit");
+            System.out.println("4. Delete Product");
+            System.out.println("5. Exit");
 
             int choice = scanner.nextInt();
 
@@ -31,6 +32,9 @@ public class GroceryManagementSystem {
                     displayAllProducts(products);
                     break;
                 case 4:
+                    deleteProduct(products);
+                    break;
+                case 5:
                     System.exit(0);
                     break;
                 default:
@@ -84,6 +88,23 @@ public class GroceryManagementSystem {
         for (Product product : products) {
             System.out.println(product.toString());
         }
+
+    }
+
+    private static void deleteProduct(ArrayList<Product> products) {
+
+        System.out.print("Enter product name: ");
+        String name = scanner.next();
+
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(name)) {
+                products.remove(product);
+                System.out.println("Product deleted successfully!");
+                return;
+            }
+        }
+
+        System.out.println("Product not found!");
 
     }
 
