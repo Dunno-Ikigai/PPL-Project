@@ -1,4 +1,6 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class GroceryManagementSystem {
@@ -17,7 +19,7 @@ public class GroceryManagementSystem {
             System.out.println("2. Search Product");
             System.out.println("3. Display All Products");
             System.out.println("4. Delete Product");
-            System.out.println("5. Checkout");
+            System.out.println("5. Generate Receipt");
             System.out.println("6. Exit");
 
             int choice = scanner.nextInt();
@@ -36,7 +38,7 @@ public class GroceryManagementSystem {
                     deleteProduct(products);
                     break;
                 case 5:
-                    checkout(products);
+                    generateReceipt(products);
                     break;
                 case 6:
                     System.exit(0);
@@ -111,23 +113,27 @@ public class GroceryManagementSystem {
         System.out.println("Product not found!");
 
     }
-    
-    private static void checkout(ArrayList<Product> products) {
+
+    private static void generateReceipt(ArrayList<Product> products) {
+
+        System.out.println("Receipt");
+        System.out.println("-------");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        System.out.println("Date: " + dateFormat.format(new Date()));
+        System.out.println();
 
         double total = 0;
 
-        System.out.println("Product List");
-        System.out.println("------------");
-
         for (Product product : products) {
-            System.out.println(product.toString());
+            System.out.println(product.getName() + " - $" + product.getPrice() + " - " + product.getQuantity() + " in stock");
             total += product.getPrice() * product.getQuantity();
         }
 
+        System.out.println();
         System.out.println("Total: $" + total);
 
     }
-}
 
 class Product {
 
