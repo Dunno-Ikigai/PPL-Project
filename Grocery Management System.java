@@ -1,4 +1,6 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class GroceryManagementSystem {
@@ -112,22 +114,28 @@ public class GroceryManagementSystem {
 
     }
 
+
     private static void generateReceipt(ArrayList<Product> products) {
+
+        System.out.println("Receipt");
+        System.out.println("-------");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        System.out.println("Date: " + dateFormat.format(new Date()));
+        System.out.println();
 
         double total = 0;
 
-        System.out.println("Product List");
-        System.out.println("------------");
-
         for (Product product : products) {
-            System.out.println(product.toString());
+            System.out.println(product.getName() + " - $" + product.getPrice() + " - " + product.getQuantity() + " in stock");
             total += product.getPrice() * product.getQuantity();
         }
 
+        System.out.println();
         System.out.println("Total: $" + total);
 
     }
-
+}
 class Product {
 
     private String name;
