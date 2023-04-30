@@ -17,7 +17,8 @@ public class GroceryManagementSystem {
             System.out.println("2. Search Product");
             System.out.println("3. Display All Products");
             System.out.println("4. Delete Product");
-            System.out.println("5. Exit");
+            System.out.println("5. Checkout");
+            System.out.println("6. Exit");
 
             int choice = scanner.nextInt();
 
@@ -35,6 +36,9 @@ public class GroceryManagementSystem {
                     deleteProduct(products);
                     break;
                 case 5:
+                    checkout(products);
+                    break;
+                case 6:
                     System.exit(0);
                     break;
                 default:
@@ -107,7 +111,22 @@ public class GroceryManagementSystem {
         System.out.println("Product not found!");
 
     }
+    
+    private static void checkout(ArrayList<Product> products) {
 
+        double total = 0;
+
+        System.out.println("Product List");
+        System.out.println("------------");
+
+        for (Product product : products) {
+            System.out.println(product.toString());
+            total += product.getPrice() * product.getQuantity();
+        }
+
+        System.out.println("Total: $" + total);
+
+    }
 }
 
 class Product {
